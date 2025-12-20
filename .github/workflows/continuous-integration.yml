@@ -16,13 +16,14 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    name: Build and Test
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
+    outputs:
+      node-version: 20
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
@@ -38,17 +39,87 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Lint
-        run: pnpm run lint
+  lint:
+    name: Lint
+    needs: setup
+    runs-on: ubuntu-latest
 
-      - name: Test
-        run: pnpm run test
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Build
-        run: pnpm run build
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
-      - name: Smoke check
-        run: |
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+
+  test:
+    name: Test
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run test
+
+  build:
+    name: Build
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+
+  smoke:
+    name: Smoke Check
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+
+      - run: |
           pnpm dlx serve dist -p 3000 &
           sleep 2
           curl -f http://localhost:3000
