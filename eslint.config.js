@@ -8,5 +8,8 @@ export default [
       // override/add rules settings here, such as:
       // "astro/no-set-html-directive": "error"
     }
+  },
+  {
+    ignores: ['**/*.d.ts']
   }
 ];
