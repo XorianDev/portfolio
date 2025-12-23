@@ -5,11 +5,13 @@ import Navbar from "../../components/Navbar/Navbar.astro";
 <html class="dark" lang="en">
   <head>
     <meta charset="utf-8" />
-		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+		<link href="/favicon.svg" rel="icon" type="image/svg+xml">
+    <link href="/favicon.ico" rel="icon" sizes="any">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
 		<meta content="width=device-width" name="viewport" />
 		<meta content={Astro.generator} name="generator" />
 		<title>Juan Bocca - Software Developer</title>
+    <script src="/src/scripts/themeManager.ts"></script>
   </head>
   <body>
     <Navbar />

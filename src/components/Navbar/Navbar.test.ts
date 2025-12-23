@@ -16,9 +16,9 @@ describe('Navbar Component', () => {
     expect('localhost:4321').toBeDefined();
   });
 
-  it('should have Get in touch button', async () => {
+  it('should have Contact button', async () => {
     // Button presence validation
-    expect('Get in touch').toBeDefined();
+    expect('Contact').toBeDefined();
   });
 
   it('should have mobile toggle button for navbar', async () => {
@@ -36,7 +36,7 @@ describe('Navbar Component', () => {
   it('should have proper CSS classes for styling', async () => {
     // Verify Tailwind classes are applied
     expect('bg-neutral-primary').toBeDefined();
-    expect('fixed').toBeDefined();
+    expect('sticky').toBeDefined();
     expect('w-full').toBeDefined();
   });
 
