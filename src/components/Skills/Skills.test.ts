@@ -1,3 +1,6 @@
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines-per-function */
+/* eslint-disable max-lines */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
@@ -21,7 +24,8 @@ describe('Skills Component', () => {
 
     it('should have 5 skill category headings', () => {
       const h3Count = (html.match(/<h3/g) || []).length;
-      expect(h3Count).toBe(5);
+      const expectedH3Count = 5;
+      expect(h3Count).toBe(expectedH3Count);
     });
 
     it('should contain all skill categories', () => {
@@ -133,7 +137,8 @@ describe('Skills Component', () => {
   describe('Total Skills Count', () => {
     it('should have 21 total skill items', () => {
       const liCount = (html.match(/<li>/g) || []).length;
-      expect(liCount).toBe(21);
+      const expectedLiCount = 21;
+      expect(liCount).toBe(expectedLiCount);
     });
   });
 

@@ -1,3 +1,5 @@
+/* eslint-disable max-nested-callbacks */
+/* eslint-disable max-lines-per-function */
 import { describe, it, expect } from 'vitest';
 
 describe('Contact Component', () => {
