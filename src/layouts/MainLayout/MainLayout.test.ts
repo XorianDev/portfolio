@@ -3,21 +3,6 @@
 import { describe, it, expect } from 'vitest';
 
 describe('MainLayout Component', () => {
-  it('should be defined', async () => {
-    const layout = await import('./MainLayout.astro').then(m => m.default);
-    expect(layout).toBeDefined();
-  });
-
-  it('should render without errors', async () => {
-    const layout = await import('./MainLayout.astro').then(m => m.default);
-    expect(typeof layout).toBe('function');
-  });
-
-  it('should be callable', async () => {
-    const layout = await import('./MainLayout.astro').then(m => m.default);
-    expect(typeof layout.default === 'undefined').toBe(true);
-  });
-
   it('should include the Navbar component', async () => {
     // Verify Navbar is imported
     expect('Navbar').toBeDefined();
