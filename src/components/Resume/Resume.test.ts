@@ -55,8 +55,8 @@ describe('Resume Component', () => {
     expect(component).toContain('Angular, TypeScript, and GraphQL');
   });
 
-  it('should include View Resume button', async () => {
-    expect(component).toContain('View Resume');
+  it('should include View printable Resume button', async () => {
+    expect(component).toContain('View printable Resume');
   });
 
   it('should have proper dark mode classes', async () => {
